@@ -6,11 +6,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no"/>
     <meta name="renderer" content="webkit"/>
     <title>啦啦啦</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 
 <body>
-    <div> hello world </div>
+    <div class="content-wrap">
+        <img src="../css/images/logo.png" />
+        <div class="time" id="J_time"></div>
+
+        <div class="left-num-block">
+            <div class="num-item">
+                <div class="num-name">
+                    <span class="people-icon"></span>
+                    <span>累计服务人数</span>
+                </div>
+                <div class="num">123456</div>
+            </div>
+
+            <div class="num-item">
+                <div class="num-name">
+                    <span class="charger-icon"></span>
+                    <span>累计铺设主机</span>
+                </div>
+                <div class="num">123456</div>
+            </div>
+
+            <div class="num-item">
+                <div class="num-name">
+                    <span class="slot-icon"></span>
+                    <span>累计铺设插座</span>
+                </div>
+                <div class="num">123456</div>
+            </div>
+        </div>
+
+        <div class="right-charts-wrap">
+            <div class="line-wrap">
+                <div class="title-wrap clearfix">
+                    <div class="chart-title" style="float: left;">充电情况数据统计</div>
+                    <div class="chart-tab-wrap">
+                        <span class="active">近24h</span>
+                        <span>7天</span>
+                        <span>30天</span>
+                    </div>
+                </div>
+                <div class="chart-line" id="J_line"></div>
+            </div>
+
+            <div class="bar-wrap">
+                <div class="chart-title">主动保护统计</div>
+                <div class="chart-bar">
+                    <div class="bar-block">
+                        <div class="bar-num">90</div>
+                        <div class="bar bar-1"></div>
+                        <div class="bar-label">断电类型</div>
+                    </div>
+                    <div class="bar-block">
+                        <div class="bar-num">80</div>
+                        <div class="bar bar-2"></div>
+                        <div class="bar-label">断电类型</div>
+                    </div>
+                    <div class="bar-block">
+                        <div class="bar-num">50</div>
+                        <div class="bar bar-3"></div>
+                        <div class="bar-label">断电类型</div>
+                    </div>
+                    <div class="bar-block">
+                        <div class="bar-num">20</div>
+                        <div class="bar bar-4"></div>
+                        <div class="bar-label">断电类型</div>
+                    </div>
+                    <div class="bar-block">
+                        <div class="bar-num">10</div>
+                        <div class="bar bar-5"></div>
+                        <div class="bar-label">断电类型</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pie-wrap">
+                <div class="chart-title">故障原因统计</div>
+                <div class="chart-pie" id="J_pie"></div>
+                <div class="pie-label-wrap">
+                    <div class="label-item">
+                        <span class="label-name label-name-1">故障原因1</span>
+                        <span class="num">000</span>
+                    </div>
+                    <div class="label-item">
+                        <span class="label-name label-name-2">故障原因2</span>
+                        <span class="num">000</span>
+                    </div>
+                    <div class="label-item">
+                        <span class="label-name label-name-3">故障原因3</span>
+                        <span class="num">000</span>
+                    </div>
+                    <div class="label-item">
+                        <span class="label-name label-name-4">故障原因4</span>
+                        <span class="num">000</span>
+                    </div>
+                    <div class="label-item">
+                        <span class="label-name label-name-5">故障原因5</span>
+                        <span class="num">000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/echarts.min.js"></script>
+    <script src="../js/index.js"></script>
 
 </body>
 </html>
