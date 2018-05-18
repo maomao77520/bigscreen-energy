@@ -6,6 +6,112 @@
     font-family: "FZ";
     src: url(./fonts/FZLTXIHK.ttf);
 }
+/* 滚动数字 start */
+.m-num{
+    display: inline-block;
+}
+.m-num-view{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+.m-num-list{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    transition: all 2s ease-out;
+}
+.m-num-list:after{
+    content:' ';
+    display: block;
+    width:0;
+    height:0;
+    visibility: hidden;
+}
+.m-num-list em{
+    width:100%;
+    float: left;
+    font-style: normal;
+    box-sizing: border-box;
+    text-align: center;
+}
+/* 滚动数字 end */
+
+$aniTime: 60s;
+@mixin keyframes($name, $val, $h) {
+    @keyframes aniHeight-#{$name} {
+        0% {
+            height: 0;
+        }
+        #{$val} {
+            height: $h;
+        }
+        100% {
+            height: $h;
+        }
+    }
+}
+@mixin keyframeswidth($name, $val, $w) {
+    @keyframes aniWidth-#{$name} {
+        0% {
+            width: 0;
+        }
+        #{$val} {
+            width: $w;
+        }
+        100% {
+            width: $w;
+        }
+    }
+}
+
+
+@mixin keyframeshide($name, $val) {
+    @keyframes aniShow-#{$name} {
+        0% {
+            opacity: 0;
+        }
+        #{$val} {
+            opacity: 1;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+@mixin keyframeJump($name, $h) {
+    @keyframes jump-#{$name} {
+        0% {
+            top: -10px;
+            opacity: 1;
+        }
+        20% {
+            top: #{$h}px;
+        }
+        45% {
+            top: #{$h - 20}px;
+        }
+        50% {
+            top: #{$h - 20}px;
+        }
+        70% {
+            top: #{$h}px;
+            opacity: 1;
+        }
+        85% {
+            top: #{$h - 10}px;
+            opacity: 1;
+        }
+        100% {
+            top: #{$h}px;
+            opacity: 1;
+        }
+    }
+}
+
 .clearfix:after {
     content: '';
     visibility: hidden;
@@ -70,6 +176,511 @@
             }
         }
     }
+    .map-icon {
+        width: 179px;
+        height: 139px;
+        position: absolute;
+        bottom: 160px;
+        left: 42px;
+    }
+    .map-title {
+        color: #bababa;
+        font-size: 18px;
+        position: absolute;
+        bottom: 400px;
+        left: 60px;
+        &:before {
+            width: 16px;
+            height: 19px;
+            background: url(./images/location-icon.png);
+            display: inline-block;
+            content: '';
+            position: relative;
+            top: 2px;
+            margin-right: 6px;
+        }
+    }
+    .area-num-wrap {
+        width: 69px;
+        height: 30px;
+        position: absolute;
+        bottom: 362px;
+        left: 119px;
+        background: url(./images/514.png);
+    }
+    .map-icon-nn {
+        background: url(./images/nn-icon.png);
+    }
+    .map-icon-lz {
+        background: url(./images/lz-icon.png);
+    }
+    .map-icon-gl {
+        background: url(./images/gl-icon.png);
+    }
+    .map-icon-wz {
+        background: url(./images/wz-icon.png);
+    }
+    .map-icon-bs {
+        background: url(./images/bs-icon.png);
+    }
+
+    .center-content-wrap {
+        position: absolute;
+        top: 150px;
+        left: 400px;
+        .top-mechine-wrap {
+            width: 1025px;
+            height: 480px;
+            position: relative;
+
+            .charger-item {
+                width: 210px;
+                // height: 300px;
+                background: url(./images/charger.png) no-repeat;
+                position: absolute;
+                top: 4px;
+                left: 50%;
+                margin-left: -105px;
+                @include keyframes(300, '1%', 300px);
+                animation: aniHeight-300 $aniTime infinite;
+                .charger-text {
+                    position: absolute;
+                    top: 85px;
+                    left: 35px;
+                    @include keyframeshide('charger', '1%');
+                    animation: aniShow-charger $aniTime 3s infinite;
+                }
+                .light {
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 3px;
+                    opacity: 0;
+                    position: absolute;
+                }
+                .switch-light {
+                    background: #f00;
+                    animation: open-light $aniTime 1s;
+                    animation-fill-mode: forwards;
+                    top: 23px;
+                    right: 20px;
+                }
+                .link-light {
+                    background: #0f0;
+                    animation: open-light $aniTime 1.5s;
+                    animation-fill-mode: forwards;
+                    top: 23px;
+                    right: 47px;
+                }
+                .operate-light {
+                    background: #0f0;
+                    animation: twinkle-light 0.5s 2s linear infinite;
+                    animation-fill-mode: forwards;
+                    top: 23px;
+                    right: 72px;
+                }
+            }
+            .smoke-item {
+                width: 76px;
+                // height: 38px;
+                background: url(./images/smoke.png) no-repeat;
+                position: absolute;
+                top: 65px;
+                left: 95px;
+                @include keyframes(38, '1%', 38px);
+                animation: aniHeight-38 $aniTime 4s infinite;
+            }
+
+            .camera-item {
+                width: 79px;
+                // height: 64px;
+                background: url(./images/camera.png) no-repeat;
+                position: absolute;
+                top: 48px;
+                right: 94px;
+                @include keyframes(64, '1%', 64px);
+                animation: aniHeight-64 $aniTime 4s infinite;
+            }
+            .smoke-light {
+                width: 4px;
+                height: 4px;
+                position: absolute;
+                top: 97px;
+                left: 130px;
+                background: #f00;
+                opacity: 0;
+                animation: twinkle-light 0.5s 5s linear infinite;
+            }
+            .camera-green-light {
+                width: 4px;
+                height: 4px;
+                position: absolute;
+                top: 72px;
+                right: 116px;
+                background: #0f0;
+                opacity: 0;
+                animation: twinkle-light 0.5s 5s linear infinite;
+                transform: rotate(45deg);
+            }
+            .camera-red-light {
+                width: 4px;
+                height: 4px;
+                position: absolute;
+                top: 68px;
+                right: 108px;
+                background: #f00;
+                opacity: 0;
+                animation: open-light $aniTime 5s;
+                transform: rotate(45deg);
+            }
+            .text-wrap {
+                opacity: 0;
+                .item-name {
+                    margin-bottom: 15px;
+                    font-size: 16px;
+                    color: #b9babb;
+                }
+                .item-detail {
+                    font-size: 12px;
+                    color: #6e778e;
+                    line-height: 1.6;
+                }
+                .battery {
+                    margin-bottom: 13px;
+                    font-size: 0;
+                    .battery-item-0 {
+                        opacity: 0.3;
+                        animation: battery-0 $aniTime 6s linear infinite;
+                    }
+                    @for $i from 1 through 9 {
+                        .battery-item-#{$i} {
+                            animation: battery-#{$i} 2s #{6+0.2*$i}s linear infinite;
+                        }
+                    }
+                }
+                .battery-item {
+                    width: 3px;
+                    height: 8px;
+                    background: #0f0;
+                    display: inline-block;
+                    margin-right: 2px;
+                    opacity: 0.3;
+                }
+            }
+            .smoke-text-wrap {
+                position: absolute;
+                top: 115px;
+                left: 95px;
+                @include keyframeshide('smoke', '1%');
+                animation: aniShow-smoke $aniTime 5s infinite;
+            }
+            .camera-text-wrap {
+                position: absolute;
+                top: 115px;
+                right: 97px;
+                @include keyframeshide('camera', '1%');
+                animation: aniShow-camera $aniTime 5s infinite;
+            }
+            .slot-wrap-left {
+                position: absolute;
+                bottom: 4px;
+                left: 0;
+                font-size: 0;
+            }
+            .slot-wrap-right {
+                position: absolute;
+                bottom: 4px;
+                left: 550px;
+                font-size: 0;
+                .slot-item:last-child {
+                    margin-right: 0;
+                }
+            }
+            .slot-item {
+                display: inline-block;
+                // width: 50px;
+                height: 50px;
+                background: url(./images/slot.png) no-repeat;
+                margin-right: 10px;
+                
+            }
+            @include keyframeswidth(50, '0.5%', 50px);
+            @for $i from 0 through 15 {
+                .slot-item-#{$i} {
+                    animation: aniWidth-50 $aniTime #{6 + 0.1*$i}s infinite;
+                }
+            }
+            .slot-light-wrap {
+                position: absolute;
+                left: 0;
+                bottom: 48px;
+                .slot-light-item {
+                    width: 3px;
+                    height: 3px;
+                    background: #0f0;
+                    position: absolute;
+                    opacity: 0;
+                }
+                @for $i from 0 through 7 {
+                    .slot-light-item-#{$i} {
+                        left: #{40+61*$i - $i}px;
+                        animation: open-light $aniTime #{10 + (15 - $i) *0.2}s;
+                    }
+                }
+                @for $i from 8 through 15 {
+                    .slot-light-item-#{$i} {
+                        left: #{111+61*$i - $i}px;
+                        animation: open-light $aniTime #{10 + $i*0.2}s;
+                    }
+                }
+            }
+            .dash-line {
+                font-size: 0;
+            }
+            .dash-item {
+                width: 0px;
+                height: 1px;
+                background: #445885;
+                display: inline-block;
+                margin-right: 1px;
+            }
+            
+            .dash-line-1 {
+                position: absolute;
+                top: 34px;
+                left: 132px;
+                
+                .dash-item {
+                    width: 1px;
+                    height: 0px;
+                    display: block;
+                    margin-bottom: 1px;
+                }
+                $f: 0.015;
+                @for $i from 0 through 77 {
+                    .dash-item-#{$i} {
+                        animation: dash-item-vertival 1.5s #{9 + 1.2-$f*$i}s linear;
+                        animation-fill-mode: forwards;
+                    }
+                }
+
+            }
+            .dash-line-2 {
+                position: absolute;
+                top: 34px;
+                right: 617px;
+                $f: 0.015;
+                @for $i from 0 through 77 {
+                    .dash-item-#{$i} {
+                        animation: dash-item 1.5s #{9+1.2-$f*$i}s linear;
+                        animation-fill-mode: forwards;
+                    }
+                }
+            }
+            .dash-line-3 {
+                position: absolute;
+                top: 34px;
+                left: 618px;
+                $f: 0.015;
+                @for $i from 0 through 95 {
+                    .dash-item-#{$i} {
+                        animation: dash-item 1.5s #{9+$f*$i}s linear;
+                        animation-fill-mode: forwards;
+                    }
+                }
+            }
+            .dash-line-4 {
+                position: absolute;
+                top: 35px;
+                left: 929px;
+                .dash-item {
+                    width: 1px;
+                    height: 0px;
+                    display: block;
+                    margin-bottom: 1px;
+                }
+                $f: 0.015;
+                @for $i from 0 through 95 {
+                    .dash-item-#{$i} {
+                        animation: dash-item-vertival 1.5s #{9+$f*$i}s linear;
+                        animation-fill-mode: forwards;
+                    }
+                }
+            }
+            @include keyframeswidth(480, '2%', 480px);
+            .left-line {
+                width: 477px;
+                height: 123px;
+                background: url(./images/left-line.png) no-repeat;
+                position: absolute;
+                bottom: 53px;
+                left: 24px;
+            }
+            .black-left-line {
+                width: 477px;
+                height: 123px;
+                background: url(./images/black-line.png) no-repeat;
+                position: absolute;
+                bottom: 53px;
+                left: 24px;
+                animation: black-line-width $aniTime 9s linear;
+            }
+            .right-line {
+                // width: 480px;
+                height: 123px;
+                background: url(./images/right-line.png) no-repeat;
+                position: absolute;
+                bottom: 53px;
+                left: 520px;
+                animation: aniWidth-480 $aniTime 9s linear infinite;
+            }
+            .dot {
+                width: 15px;
+                height: 15px;
+                background: url(./images/flight-bg.png);
+                position: absolute;
+                bottom: 171px;
+                opacity: 0;
+            }
+            .left-dot {
+                left: 495px;
+                animation: left-dot-flight 2s 11s linear infinite;
+            }
+            .right-dot {
+                right: 502px;
+                animation: right-dot-flight 2s 11s linear infinite;
+            }
+            .left-bottom-dot {
+                animation: left-bottom-dot 2s 11s linear infinite;
+            }
+            .right-bottom-dot {
+                animation: right-bottom-dot 2s 11s linear infinite;
+            }
+        }
+    }
+    .bottom-map-wrap {
+        position: absolute;
+        .map-bg {
+            width: 939px;
+            height: 334px;
+            background: url(./images/map.png) no-repeat;
+            position: absolute;
+            left: 400px;
+            top: 625px;
+            .city {
+                position: absolute;
+                display: none;
+            }
+            .nn {
+                width: 339px;
+                height: 117px;
+                background: url(./images/nn.png);
+                top: 107px;
+                left: 326px;
+            }
+            .lz {
+                width: 197px;
+                height: 99px;
+                background: url(./images/lz.png);
+                top: 12px;
+                left: 500px;
+            }
+            .gl {
+                width: 192px;
+                height: 92px;
+                background: url(./images/gl.png);
+                top: 0px;
+                left: 620px;
+            }
+            .bs {
+                width: 407px;
+                height: 124px;
+                background: url(./images/bs.png);
+                top: 52px;
+                left: 1px;
+            }
+            .wz {
+                width: 196px;
+                height: 106px;
+                background: url(./images/wz.png);
+                top: 86px;
+                left: 720px;
+            }
+            .location {
+                width: 77px;
+                height: 60px;
+                opacity: 0;
+                position: absolute;
+                background: url(./images/location.png) no-repeat;
+            }
+            .location-nn {
+                left: 450px;
+                @include keyframeJump('nn', 110);
+                // animation: jump-nn 0.8s 1s linear;
+                animation-fill-mode: forwards;
+            }
+            .location-lz {
+                left: 580px;
+                @include keyframeJump('lz', 30);
+                // animation: jump-lz 0.8s 1s linear;
+                animation-fill-mode: forwards;
+            }
+            .location-gl {
+                left: 700px;
+                @include keyframeJump('gl', 20);
+                // animation: jump-gl 0.8s 1s linear;
+                animation-fill-mode: forwards;
+            }
+            .location-wz {
+                left: 820px;
+                @include keyframeJump('wz', 110);
+                // animation: jump-wz 0.8s 1s linear;
+                animation-fill-mode: forwards;
+            }
+            .location-bs {
+                left: 220px;
+                @include keyframeJump('bs', 70);
+                // animation: jump-bs 0.8s 1s linear;
+                animation-fill-mode: forwards;
+            }
+            .city-text-wrap {
+                color: #fff;
+                position: absolute;
+                z-index: 10;
+                .title {
+                    font-size: 30px;
+                }
+                .eng {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+                .detail {
+                    font-size: 16px;
+                    line-height: 1.2;
+                }
+                opacity: 0;
+            }
+            .text-nn {
+                left: 560px;
+                top: 120px;
+            }
+            .text-lz {
+                left: 442px;
+                top: 40px;
+            }
+            .text-gl {
+                left: 620px;
+                top: 50px;
+            }
+            .text-wz {
+                left: 700px;
+                top: 120px;
+            }
+            .text-bs {
+                left: 300px;
+                top: 80px;
+            }
+        }
+    }
 
     .right-charts-wrap {
         width: 300px;
@@ -119,7 +730,7 @@
                 font-size: 0;
                 height: 160px;
                 .bar-block {
-                    width: 60px;
+                    width: 70px;
                     text-align: center;
                     display: inline-block;
                     font-size: 12px;
@@ -130,7 +741,7 @@
                         position: absolute;
                         bottom: 0;
                         left: 50%;
-                        margin-left: -2em;
+                        margin-left: -12px;
                     }
                     .bar {
                         width: 14px;
@@ -141,24 +752,20 @@
                         margin-left: -7px;
                     }
                     .bar-1 {
-                        height: 100px;
-                        background: #00a0e9;
+                        height: 95.2px;
+                        background: #3497ed;
                     }
                     .bar-2 {
-                        height: 90px;
-                        background: #13b5b1;
+                        height: 78.8px;
+                        background: #fbb929;
                     }
                     .bar-3 {
-                        height: 10px;
-                        background: #e64235;
+                        height: 18.6px;
+                        background: #2cc924;
                     }
                     .bar-4 {
-                        height: 10px;
-                        background: #e3a82a;
-                    }
-                    .bar-5 {
-                        height: 20px;
-                        background: #4caf50;
+                        height: 7.4px;
+                        background: #1ad9de;
                     }
                 }
             }
@@ -188,7 +795,7 @@
                         }
                     }
                     .label-name-1:before {
-                        background: #ff4735;
+                        background: #3497ed;
                     }
                     .label-name-2:before {
                         background: #fbb929;
@@ -204,7 +811,7 @@
                     }
                 }
                 .active-0 {
-                    color: #ff4735;
+                    color: #3497ed;
                 }
                 .active-1 {
                     color: #fbb929;
@@ -222,3 +829,319 @@
         }
     }
 }
+
+@keyframes showText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+@keyframes dash-item {
+    0% {
+        width: 0; 
+    }
+    1% {
+        width: 3px;
+    }
+    100% {
+        width: 3px;
+    }
+}
+@keyframes dash-item-vertival {
+    0% {
+        height: 0; 
+    }
+    1% {
+        height: 3px;
+    }
+    100% {
+        height: 3px;
+    }
+}
+
+
+@keyframes line-width {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 480px;
+    }
+}
+@keyframes black-line-width {
+    0% {
+        width: 480px;
+    }
+    2% {
+        width: 0;
+    }
+    100% {
+        width: 0px;
+    }
+}
+
+@keyframes battery-0 {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@for $i from 1 through 9 {
+    @keyframes battery-#{$i} {
+        0% {
+            opacity: 1;
+        }
+        #{100-10*$i}% {
+            opacity: 1;
+        }
+        #{100-10*$i+1}% {
+            opacity: 0.3;
+        }
+        100% {
+            opacity: 0.3
+        }
+    }
+}
+
+@keyframes left-dot-flight {
+    0% {
+        bottom: 171px;
+        left: 493px;
+        opacity: 1;
+    }
+    15.7% {
+        bottom: 74px;
+        left: 493px;
+    }
+    95.3% {
+        bottom: 74px;
+        left: 17px;
+    }
+    100% {
+        bottom: 48px;
+        left: 17px;
+        opacity: 1;
+    }
+}
+@keyframes right-dot-flight {
+    0% {
+        bottom: 171px;
+        right: 497px;
+        opacity: 1;
+    }
+    15.7% {
+        bottom: 74px;
+        right: 497px;
+    }
+    95.3% {
+        bottom: 74px;
+        right: 18px;
+    }
+    100% {
+        bottom: 48px;
+        right: 18px;
+        opacity: 1;
+    }
+}
+@keyframes left-bottom-dot {
+    0% {
+        bottom: 78px;
+        left: 440px;
+        opacity: 0
+    }
+    24.73% {
+        opacity: 0;
+    }
+    24.74% {
+        bottom: 78px;
+        left: 440px;
+        opacity: 1;
+    }
+    34.74%{
+        bottom: 48px;
+        left: 440px;
+        opacity: 1;
+    }
+    34.8% {
+        bottom: 78px;
+        left: 380px;
+        opacity: 1;
+    }
+    44.8% {
+        bottom: 48px;
+        left: 380px;
+        opacity: 1;
+    }
+    44.81% {
+        bottom: 78px;
+        left: 320px;
+        opacity: 1;
+    }
+    54.81%{
+        bottom: 48px;
+        left: 320px;
+        opacity: 1;
+    }
+    54.82% {
+        bottom: 78px;
+        left: 260px;
+        opacity: 1
+    }
+    64.82% {
+        bottom: 48px;
+        left: 260px;
+        opacity: 1
+    }
+    64.83% {
+        bottom: 78px;
+        left: 200px;
+        opacity: 1
+    }
+    74.83% {
+        bottom: 48px;
+        left: 200px;
+        opacity: 1
+    }
+    74.84% {
+        bottom: 78px;
+        left: 140px;
+        opacity: 1
+    }
+    84.83% {
+        bottom: 48px;
+        left: 140px;
+        opacity: 1
+    }
+    84.84% {
+        bottom: 78px;
+        left: 80px;
+        opacity: 1
+    }
+    94.83% {
+        bottom: 48px;
+        left: 80px;
+        opacity: 1
+    }
+    94.84% {
+        opacity: 0;
+    }
+}
+@keyframes right-bottom-dot {
+    0% {
+        bottom: 78px;
+        right: 440px;
+        opacity: 0
+    }
+    24.73% {
+        opacity: 0;
+    }
+    24.74% {
+        bottom: 78px;
+        right: 440px;
+        opacity: 1;
+    }
+    34.74%{
+        bottom: 48px;
+        right: 440px;
+        opacity: 1;
+    }
+    34.8% {
+        bottom: 78px;
+        right: 380px;
+        opacity: 1;
+    }
+    44.8% {
+        bottom: 48px;
+        right: 380px;
+        opacity: 1;
+    }
+    44.81% {
+        bottom: 78px;
+        right: 320px;
+        opacity: 1;
+    }
+    54.81%{
+        bottom: 48px;
+        right: 320px;
+        opacity: 1;
+    }
+    54.82% {
+        bottom: 78px;
+        right: 260px;
+        opacity: 1
+    }
+    64.82% {
+        bottom: 48px;
+        right: 260px;
+        opacity: 1
+    }
+    64.83% {
+        bottom: 78px;
+        right: 200px;
+        opacity: 1
+    }
+    74.83% {
+        bottom: 48px;
+        right: 200px;
+        opacity: 1
+    }
+    74.84% {
+        bottom: 78px;
+        right: 140px;
+        opacity: 1
+    }
+    84.83% {
+        bottom: 48px;
+        right: 140px;
+        opacity: 1
+    }
+    84.84% {
+        bottom: 78px;
+        right: 80px;
+        opacity: 1
+    }
+    94.83% {
+        bottom: 48px;
+        right: 80px;
+        opacity: 1
+    }
+    94.84% {
+        opacity: 0;
+    }
+}
+@keyframes open-light {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes twinkle-light {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+

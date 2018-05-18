@@ -3,21 +3,21 @@ function pie() {
     var pieData = [
         {
             name: 'type1',
-            value: 20,
+            value: 21,
             itemStyle: {
                 normal: {
-                    color: '#ff4735'
+                    color: '#3497ed'
                 }
             }
         }, {
             name: 'type2',
-            value: 2,
+            value: 9,
             itemStyle: {
                 normal: {
                     color: '#fbb929'
                 }
             }
-        }, {
+        }/*, {
             name: 'type3',
             value: 9,
             itemStyle: {
@@ -41,7 +41,7 @@ function pie() {
                     color: '#3497ed'
                 }
             }
-        }];
+        }*/];
     pie.setOption({
         series : [{
             name:'故障',
@@ -55,7 +55,7 @@ function pie() {
         }]
     });
     var active = 0;
-    var pre = 4;
+    var pre = 1;
     setInterval(function () {
         pie.dispatchAction({
             type: 'highlight',
@@ -72,7 +72,7 @@ function pie() {
         $('.pie-label-wrap .label-item').eq(pre).removeClass('active-' + pre);
 
         pre = active;
-        active = (active + 1) % 5;
+        active = (active + 1) % 2;
     }, 2000);
     
 }
