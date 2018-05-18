@@ -144,7 +144,7 @@ function bottomAni() {
         'animation-fill-mode': 'forwards'
     });
 
-    $('.map-icon').removeClass('').addClass('map-icon-' + city);
+    $('.map-icon').removeClass('map-icon-nn map-icon-lz map-icon-wz map-icon-gl map-icon-bs').addClass('map-icon-' + city);
 }
 
 
@@ -296,10 +296,10 @@ function line() {
             lineStyle: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                 offset: 0,
-                                color: '#ffb71d'
+                                color: '#fff000'
                             }, {
                                 offset: 1,
-                                color: '#fff000'
+                                color: '#ffb71d'
                             }])
             },
             symbol: 'none',

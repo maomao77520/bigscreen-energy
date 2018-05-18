@@ -75,6 +75,6 @@ function bottomAni() {
         'animation-fill-mode': 'forwards'
     });
 
-    $('.map-icon').removeClass('').addClass('map-icon-' + city);
+    $('.map-icon').removeClass('map-icon-nn map-icon-lz map-icon-wz map-icon-gl map-icon-bs').addClass('map-icon-' + city);
 }
 
